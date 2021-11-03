@@ -10,14 +10,14 @@
     </td>
     <td class="text-center">
       <div class="btn-group d-flex align-items-center" role="group">
-        <button type="button" class="btn shadow-none">-</button>
-        <span class="mx-2">1</span>
-        <button type="button" class="btn shadow-none">+</button>
+        <button type="button" class="btn shadow-none" @click="$root.decrementProduct($props)">-</button>
+        <span class="mx-2">{{ quantity }}</span>
+        <button type="button" class="btn shadow-none" @click="$root.addToCart($props)">+</button>
       </div>
     </td>
     <td class="text-center py-3">$ {{ price }}</td>
     <td>
-      <button class="btn shadow-none">
+      <button class="btn shadow-none" @click="$root.removeProduct($props)">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg"
              viewBox="0 0 16 16">
           <path
@@ -31,17 +31,24 @@
 <script>
 export default {
   name: "CartProductItem",
-  id: Number,
   props:{
+
+    id: Number,
     title:{
       type: String,
       isRequired: true,
       default: "Product"
     },
+    key: Number,
     category: String,
     image: String,
     isAvailable: Boolean,
-    price: Number
+    price: Number,
+    quantity:{
+      type: Number,
+      isRequired: true,
+      default: 1
+    }
   }
 }
 </script>

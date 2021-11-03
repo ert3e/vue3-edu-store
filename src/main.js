@@ -12,12 +12,53 @@ const app = createApp({
     }),
     methods: {
         addToCart(product) {
-            this.cartProducts.push(product);
+            if(this.cartProducts.length){
+                //if has n
+               if (!this.cartProducts.some(e => e.id === product.id)){
+                   this.cartProducts.push(product);
+               } else {
+                   this.incrementProduct(product)
+               }
+            } else {
+                this.cartProducts.push(product);
+            }
         },
-        removeProductById(id) {
+        removeProduct(product) {
             this.cartProducts = this.cartProducts.filter(function(value, index, arr){
-                return value.id !== id;
+                return value.id !== product.id;
             });
+        },
+
+        incrementProduct(product){
+            this.cartProducts.forEach(function (value, key, array) {
+                if (product.id === value.id) {
+                    value.quantity++;
+                    return false
+                }
+            })
+        },
+        decrementProduct(product){
+            if(this.cartProducts.length) {
+                this.cartProducts.forEach(function (value, key) {
+                    if (product.id === value.id && value.quantity > 1) {
+                        value.quantity--;
+                    }
+                })
+            }
+        },
+        totalCount(){
+            let total = 0;
+            this.cartProducts.forEach(function (value) {
+                total += value.quantity
+            });
+            return total;
+        },
+        totalPrices(){
+            let total = 0;
+            this.cartProducts.forEach(function (value) {
+                total += value.quantity * value.price
+            });
+            return total;
         }
     }
 });

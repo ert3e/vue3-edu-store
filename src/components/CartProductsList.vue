@@ -12,15 +12,15 @@
 
     <!-- CartProductItem component -->
     <cart-item
-        v-for="product in $root.cartProducts"
+        v-for="(product, index) in $root.cartProducts"
         :id="product.id"
-        :key="product.id"
+        :key="index"
         :title="product.title"
         :category="product.category"
         :is-available="product.is_available"
         :price="product.price"
         :image="product.image"
-        @add-to-cart="$root.addToCart(product)"
+        :quantity="product.quantity"
     />
 
     </tbody>
@@ -29,8 +29,8 @@
       <td class="text-end">
         Total:
       </td>
-      <td class="text-center">2</td>
-      <td class="text-end">$2998</td>
+      <td class="text-center">{{ $root.totalCount()}}</td>
+      <td class="text-end">$ {{$root.totalPrices()}}</td>
     </tr>
     </tfoot>
   </table>
@@ -41,7 +41,8 @@ import CartItem from "./CartProductItem";
 
 export default {
   components: { CartItem },
-  name: "CartProductsList"
+  name: "CartProductsList",
+
 }
 </script>
 

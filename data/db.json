@@ -14,7 +14,7 @@
       "category": "Computer & Accessories",
       "price": 3999,
       "image": "./img/imac.jpeg",
-      "is_available": false
+      "is_available": true
     }
   ]
 }

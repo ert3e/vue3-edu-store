@@ -12,7 +12,7 @@
                 :is-available="product.is_available"
                 :price="product.price"
                 :image="product.image"
-                @add-to-cart="$root.addToCart(product)"
+                :quantity="product.quantity"
             />
         </div>
       </div>
