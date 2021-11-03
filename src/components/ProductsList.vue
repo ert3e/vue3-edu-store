@@ -5,6 +5,7 @@
         <div class="row">
             <product
                 v-for="product in products"
+                :id="product.id"
                 :key="product.id"
                 :title="product.title"
                 :category="product.category"
@@ -30,9 +31,8 @@ export default {
   }),
   methods: {
     async fetchProducts() {
-     const response = await fetch("http://localhost:3000/products");
-     this.products = await response.json();
-
+      const response = await fetch("http://localhost:3000/products");
+      this.products = await response.json();
     }
   },
   mounted() {

@@ -12,7 +12,12 @@ const app = createApp({
     }),
     methods: {
         addToCart(product) {
-            this.cartProducts.push(product)
+            this.cartProducts.push(product);
+        },
+        removeProductById(id) {
+            this.cartProducts = this.cartProducts.filter(function(value, index, arr){
+                return value.id !== id;
+            });
         }
     }
 });

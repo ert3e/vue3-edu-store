@@ -18,7 +18,7 @@
           <strong v-else class="text-danger">Out of stock</strong>
         </p>
         <button
-            @click="$root.addToCart('add-to-cart')"
+            @click="$root.addToCart({'id': id, 'title': title,'category': category,'price': price,'isAvailable':  isAvailable, 'image': image})"
             :disabled="!isAvailable"
             :class="`btn btn-${isAvailable ? 'success' : 'secondary'} w-100 shadow-none`">
           Add to cart
@@ -32,8 +32,10 @@
 
 export default {
   name: "Product",
-  id: Number,
+
   props:{
+    id: Number,
+    key: Number,
     title:{
       type: String,
       isRequired: true,

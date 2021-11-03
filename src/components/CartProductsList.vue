@@ -11,7 +11,17 @@
     <tbody>
 
     <!-- CartProductItem component -->
-    <cart-item></cart-item>
+    <cart-item
+        v-for="product in $root.cartProducts"
+        :id="product.id"
+        :key="product.id"
+        :title="product.title"
+        :category="product.category"
+        :is-available="product.is_available"
+        :price="product.price"
+        :image="product.image"
+        @add-to-cart="$root.addToCart(product)"
+    />
 
     </tbody>
     <tfoot>
